@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: insertProducerDummyData
+      author: Taku-pg
+      changes:
+        - loadUpdateData:
+            catalogName: task_db
+            schemaName: public
+            tableName: producer
+            primaryKey: id
+            file: ./MOCK_DATA.csv
+            relativeToChangelogFile: true
