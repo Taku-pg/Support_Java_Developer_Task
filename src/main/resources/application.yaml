@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: Support_Java_Devloper_Task
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url:  jdbc:postgresql://localhost:5432/task_db
+    username: test
+    password: test
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
