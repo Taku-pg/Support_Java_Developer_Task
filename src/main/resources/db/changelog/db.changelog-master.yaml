@@ -5,3 +5,7 @@ databaseChangeLog:
       file: db/changelog/schema/202604141448_create_product_table.yaml
   - include:
       file: db/changelog/schema/202604141453_add_foreign_key_constraint.yaml
+  - include:
+      file: db/changelog/schema/202604142111_rename_producer_column.yaml
+  - include:
+      file: db/changelog/data/202604142106_insert_producer_dummy_data.yaml
