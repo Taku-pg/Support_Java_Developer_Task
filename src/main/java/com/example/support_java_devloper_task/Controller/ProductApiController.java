@@ -41,9 +41,15 @@ public class ProductApiController {
         return ResponseEntity.ok(productService.getAllProducts());
     }
 
-    @PostMapping("/create")
+    @PostMapping("")
     public ResponseEntity<?> createProduct(@RequestBody @Valid NewProductDTO newProductDTO) {
         productService.AddProduct(newProductDTO);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
+        productService.deleteProduct(id);
+        return ResponseEntity.noContent().build();
     }
 }
