@@ -1,6 +1,7 @@
 package com.example.support_java_devloper_task.Service;
 
 import com.example.support_java_devloper_task.Model.DTO.NewProductDTO;
+import com.example.support_java_devloper_task.Model.DTO.ProductDTO;
 import com.example.support_java_devloper_task.Model.Entity.Producer;
 import com.example.support_java_devloper_task.Model.Entity.Product;
 import com.example.support_java_devloper_task.Repository.ProducerRepository;
@@ -20,6 +21,10 @@ public class ProductService {
                           ProducerRepository producerRepository) {
         this.productRepository = productRepository;
         this.producerRepository = producerRepository;
+    }
+
+    public List<ProductDTO> getAllProducts() {
+        return productRepository.getAllProductDTO();
     }
 
     @Transactional
