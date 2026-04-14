@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: renameProducerTableColumn
+      author: Taku-pg
+      changes:
+        - renameColumn:
+            catalogName: task_db
+            schemaName: public
+            tableName: producer
+            columnDataType: varchar(255)
+            newColumnName: producer_name
+            oldColumnName: producerName
