@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: createProducerTable
+      author: Taku-pg
+      changes:
+        - createTable:
+            catalogName: task_db
+            schemaName: public
+            tableName: producer
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: producerName
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+      rollback:
+        - dropTable:
+            tableName: producer
+            schemaName: public
+            catalogName: task_db

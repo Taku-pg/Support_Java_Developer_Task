@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: addForeignKeyConstraint
+      author: Taku-pg
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: producer_id
+            baseTableCatalogName: task_db
+            baseTableSchemaName: public
+            baseTableName: product
+            constraintName: fk_producer_product
+            deferrable: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableCatalogName: task_db
+            referencedTableSchemaName: public
+            referencedTableName: producer
+            validate: true
+      rollback:
+        - dropForeignKeyConstraint:
+            constraintName: fk_producer_product
+            baseTableName: product
+            baseTableSchemaName: public
+            baseTableCatalogName: task_db

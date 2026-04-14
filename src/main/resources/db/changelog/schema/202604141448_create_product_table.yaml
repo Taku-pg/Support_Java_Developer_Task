@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: createProductTable
+      author: Taku-pg
+      changes:
+        - createTable:
+            catalogName: task_db
+            schemaName: public
+            tableName: product
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: attributes
+                  type: jsonb
+              - column:
+                  name: producer_id
+                  type: int
+                  constraints:
+                    nullable: false
+      rollback:
+        - dropTable:
+            tableName: product
+            schemaName: public
+            catalogName: task_db
