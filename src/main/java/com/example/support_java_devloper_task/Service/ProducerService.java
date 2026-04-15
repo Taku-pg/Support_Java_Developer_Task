@@ -61,4 +61,12 @@ public class ProducerService {
             productService.addProduct(newProductDTO);
         }
     }
+
+    public void updateProducer(Long id, String newProducerName) {
+        Producer producer = producerRepository.findById(id)
+                .orElseThrow(()->new NoSuchElementException("producer not found"));
+
+        producer.setProducerName(newProducerName);
+        producerRepository.save(producer);
+    }
 }

@@ -23,4 +23,8 @@ public class Producer {
     public String getProducerName() {
         return producerName;
     }
+
+    public void setProducerName(String producerName) {
+        this.producerName = producerName;
+    }
 }

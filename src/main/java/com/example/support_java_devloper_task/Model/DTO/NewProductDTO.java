@@ -10,7 +10,6 @@ import java.util.Map;
 
 public class NewProductDTO {
     @NotNull(message = "You have to specify producer id")
-    @NotBlank(message = "You have to specify producer name")
     private Long id;
     @NotNull(message = "You have to set at least 1 product")
     @NotEmpty(message = "You have to set at least 1 product")
