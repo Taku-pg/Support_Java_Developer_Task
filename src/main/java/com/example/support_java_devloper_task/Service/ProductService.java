@@ -47,7 +47,7 @@ public class ProductService {
         final List<Map<String,Object>> products = newProductDTO.getProducts();
 
         products.forEach(product -> {
-            if(product.isEmpty()){
+            if(product==null || product.isEmpty()){
                 throw new IllegalArgumentException("product is empty");
             }
             final Product newProduct = new Product(product, producer);
