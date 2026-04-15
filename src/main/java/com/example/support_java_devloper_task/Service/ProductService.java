@@ -98,7 +98,7 @@ public class ProductService {
     private Map applyPatchToAttribute(final JsonPatch jsonPatch,
                                     final Map<String,Object> attributes)
             throws JsonPatchException, JsonProcessingException {
-        final JsonNode patched = jsonPatch.apply(objectMapper.convertValue(attributes, JsonNode.class));
+        final JsonNode patched = jsonPatch.apply(objectMapper.valueToTree(attributes));
         return objectMapper.treeToValue(patched, Map.class);
     }
 
