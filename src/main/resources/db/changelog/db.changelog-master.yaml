@@ -9,3 +9,6 @@ databaseChangeLog:
       file: db/changelog/schema/202604142111_rename_producer_column.yaml
   - include:
       file: db/changelog/data/202604142106_insert_producer_dummy_data.yaml
+  - include:
+      file: db/changelog/schema/202604151657_change_identity_to_always.yaml
+

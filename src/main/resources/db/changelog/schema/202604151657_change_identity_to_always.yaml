@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: changeIdentityToAlways
+      author: Taku-pg
+      changes:
+        - sql:
+            sql: ALTER TABLE producer ALTER COLUMN id SET GENERATED ALWAYS
