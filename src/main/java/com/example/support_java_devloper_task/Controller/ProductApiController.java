@@ -67,8 +67,10 @@ public class ProductApiController {
     public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestBody JsonPatch jsonPatch) {
         try{
             productService.updateProduct(id,jsonPatch);
-        }catch (JsonPatchException | JsonProcessingException e){
-            return ResponseEntity.internalServerError().build();
+        }catch (JsonPatchException e){
+            return ResponseEntity.internalServerError().body("invalid patch");
+        }catch (JsonProcessingException e){
+            return ResponseEntity.internalServerError().body("invalid json");
         }
         return ResponseEntity.noContent().build();
     }
