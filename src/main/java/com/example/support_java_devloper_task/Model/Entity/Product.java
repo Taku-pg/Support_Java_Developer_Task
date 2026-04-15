@@ -26,12 +26,20 @@ public class Product {
         this.producer = producer;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public Map<String, Object> getAttributes() {
         return attributes;
     }
 
     public void setAttributes(Map<String, Object> attributes) {
         this.attributes = attributes;
+    }
+
+    public Producer getProducer() {
+        return producer;
     }
 
 }

@@ -12,4 +12,11 @@ public class Producer {
     private String producerName;
     public Producer() {}
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getProducerName() {
+        return producerName;
+    }
 }
