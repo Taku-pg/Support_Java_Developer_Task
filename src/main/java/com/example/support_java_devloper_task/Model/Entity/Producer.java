@@ -12,6 +12,10 @@ public class Producer {
     private String producerName;
     public Producer() {}
 
+    public Producer(String producerName) {
+        this.producerName = producerName;
+    }
+
     public Long getId() {
         return id;
     }

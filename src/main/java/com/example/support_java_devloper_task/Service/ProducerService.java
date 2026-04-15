@@ -1,10 +1,13 @@
 package com.example.support_java_devloper_task.Service;
 
+import com.example.support_java_devloper_task.Model.DTO.NewProducerDTO;
+import com.example.support_java_devloper_task.Model.DTO.NewProductDTO;
 import com.example.support_java_devloper_task.Model.DTO.ProducerDTO;
 import com.example.support_java_devloper_task.Model.Entity.Producer;
 import com.example.support_java_devloper_task.Model.Entity.Product;
 import com.example.support_java_devloper_task.Repository.ProducerRepository;
 import com.example.support_java_devloper_task.Repository.ProductRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -13,12 +16,12 @@ import java.util.*;
 public class ProducerService {
 
     private final ProducerRepository producerRepository;
-    private final ProductRepository productRepository;
+    private final ProductService productService;
 
     public ProducerService(ProducerRepository producerRepository,
-                           ProductRepository productRepository) {
+                           ProductService productService) {
         this.producerRepository = producerRepository;
-        this.productRepository = productRepository;
+        this.productService = productService;
     }
 
     public List<ProducerDTO> getProducers() {
@@ -26,7 +29,7 @@ public class ProducerService {
         List<Long> ids = producers.stream()
                 .map(Producer::getId)
                 .toList();
-        List<Product> products = productRepository.findAllByIdIn(ids);
+        List<Product> products = productService.getAllProducts(ids);
 
         final Map<Long, ProducerDTO> producerMap = new HashMap<>();
 
@@ -44,5 +47,18 @@ public class ProducerService {
         }
 
         return new ArrayList<>(producerMap.values());
+    }
+
+    @Transactional
+    public void addProducer(NewProducerDTO newProducerDTO) {
+        Producer producer = new Producer(newProducerDTO.getProducerName());
+        Producer savedProducer = producerRepository.save(producer);
+        if(newProducerDTO.getProducts() != null) {
+            NewProductDTO newProductDTO =
+                    new NewProductDTO(
+                            savedProducer.getId(),
+                            newProducerDTO.getProducts());
+            productService.addProduct(newProductDTO);
+        }
     }
 }
