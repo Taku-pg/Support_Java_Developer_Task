@@ -46,7 +46,7 @@ public class ProductApiController {
 
     @PostMapping("")
     public ResponseEntity<?> createProduct(@RequestBody @Valid NewProductDTO newProductDTO) {
-        productService.AddProduct(newProductDTO);
+        productService.addProduct(newProductDTO);
         return ResponseEntity.noContent().build();
     }
 

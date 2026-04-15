@@ -33,15 +33,18 @@ public class ProductService {
     }
 
     public List<ProductDTO> getAllProducts() {
-
         return productRepository.getAllProductDTO();
     }
 
+    public List<Product> getAllProducts(List<Long> ids){
+        return productRepository.findAllByIdIn(ids);
+    }
+
     @Transactional
-    public void AddProduct(NewProductDTO newProductDTO){
+    public void addProduct(NewProductDTO newProductDTO){
         final Producer producer =
                 producerRepository
-                        .getProducerByProducerName(newProductDTO.getProducerName())
+                        .findProducerById(newProductDTO.getProducerId())
                         .orElseThrow(()-> new NoSuchElementException("producer not found"));
 
         final List<Map<String,Object>> products = newProductDTO.getProducts();
