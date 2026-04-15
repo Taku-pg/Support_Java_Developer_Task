@@ -15,5 +15,5 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
                       product.attributes
                       ) FROM Product product JOIN product.producer producer
            """)
-    public List<ProductDTO> getAllProductDTO();
+    List<ProductDTO> getAllProductDTO();
 }

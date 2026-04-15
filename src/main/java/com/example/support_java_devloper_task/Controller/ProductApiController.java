@@ -3,6 +3,9 @@ package com.example.support_java_devloper_task.Controller;
 import com.example.support_java_devloper_task.Model.DTO.NewProductDTO;
 import com.example.support_java_devloper_task.Model.DTO.ProductDTO;
 import com.example.support_java_devloper_task.Service.ProductService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.github.fge.jsonpatch.JsonPatch;
+import com.github.fge.jsonpatch.JsonPatchException;
 import jakarta.validation.Valid;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.ResponseEntity;
@@ -44,6 +47,18 @@ public class ProductApiController {
     @PostMapping("")
     public ResponseEntity<?> createProduct(@RequestBody @Valid NewProductDTO newProductDTO) {
         productService.AddProduct(newProductDTO);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping(path = "/{id}", consumes = "application/json-patch+json")
+    public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestBody JsonPatch jsonPatch) {
+        IO.println(jsonPatch);
+        try{
+            productService.updateProduct(id,jsonPatch);
+        }catch (JsonPatchException | JsonProcessingException e){
+            IO.println(e.getMessage());
+            return ResponseEntity.internalServerError().build();
+        }
         return ResponseEntity.noContent().build();
     }
 
