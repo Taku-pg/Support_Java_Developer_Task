@@ -52,11 +52,9 @@ public class ProductApiController {
 
     @PatchMapping(path = "/{id}", consumes = "application/json-patch+json")
     public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestBody JsonPatch jsonPatch) {
-        IO.println(jsonPatch);
         try{
             productService.updateProduct(id,jsonPatch);
         }catch (JsonPatchException | JsonProcessingException e){
-            IO.println(e.getMessage());
             return ResponseEntity.internalServerError().build();
         }
         return ResponseEntity.noContent().build();
