@@ -49,4 +49,10 @@ public class ProducerApiController {
         return ResponseEntity.noContent().build();
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteProducer(@PathVariable Long id) {
+        producerService.deleteProducer(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

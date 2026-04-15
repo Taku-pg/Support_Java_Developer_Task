@@ -69,4 +69,9 @@ public class ProducerService {
         producer.setProducerName(newProducerName);
         producerRepository.save(producer);
     }
+
+    @Transactional
+    public void deleteProducer(Long id) {
+        producerRepository.deleteById(id);
+    }
 }
