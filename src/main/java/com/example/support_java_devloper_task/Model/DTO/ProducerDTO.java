@@ -28,6 +28,10 @@ public class ProducerDTO {
         return producerProducts;
     }
 
+    /**
+     * Convert Product object to ProducerProductDTO
+     * @param products List of products which belongs to this producer
+     * */
     public void setProducerProducts(final List<Product> products) {
         for (final Product product : products) {
             final ProducerProductDTO producerProductDTO =
@@ -40,6 +44,9 @@ public class ProducerDTO {
 
     }
 
-    public record ProducerProductDTO(Long id, Map<String, Object> attributes) {
+    /**
+     * Inner record class utilized only when producer record is retrieved
+     * */
+    record ProducerProductDTO(Long id, Map<String, Object> attributes) {
     }
 }

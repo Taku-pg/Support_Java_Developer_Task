@@ -31,24 +31,43 @@ public class ProducerApiController {
         return ResponseEntity.badRequest().body(e.getMessage());
     }
 
+    @ExceptionHandler
+    public ResponseEntity<String> handleException(DataAccessException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
+
+    /**
+     *Retrieve all producers with their products
+     * */
     @GetMapping()
     public ResponseEntity<List<ProducerDTO>> getAllProducers() {
         List<ProducerDTO> producers = producerService.getProducers();
         return ResponseEntity.ok(producers);
     }
 
+    /**
+     * Create new producer
+     * */
     @PostMapping()
     public ResponseEntity<ProducerDTO> createProducer(@RequestBody @Valid NewProducerDTO newProducerDTO) {
         producerService.addProducer(newProducerDTO);
         return ResponseEntity.noContent().build();
     }
 
+    /**
+     * Update producer name
+     * @param id Target producer id to update
+     * */
     @PutMapping("/{id}")
     public ResponseEntity<?>  updateProducer(@PathVariable Long id, @RequestBody String newProducerName) {
         producerService.updateProducer(id, newProducerName);
         return ResponseEntity.noContent().build();
     }
 
+    /**
+     * Delete producer
+     * @param id Target producer id to delete
+     * */
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteProducer(@PathVariable Long id) {
         producerService.deleteProducer(id);

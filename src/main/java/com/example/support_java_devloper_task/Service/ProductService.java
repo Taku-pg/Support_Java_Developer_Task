@@ -32,14 +32,28 @@ public class ProductService {
         this.objectMapper = objectMapper;
     }
 
-    public List<ProductDTO> getAllProducts() {
+    /**
+     * Retrieve all products dto
+     * @return list of product dto
+     * */
+    public List<ProductDTO> getAllProductDTOs() {
         return productRepository.getAllProductDTO();
     }
 
-    public List<Product> getAllProducts(List<Long> ids){
-        return productRepository.findAllByIdIn(ids);
+    /**
+     * Retrieve all products
+     * @return list of product entity
+     * */
+    public List<Product> getAllProducts(){
+        return productRepository.findAll();
     }
 
+    /**
+     * Create new product
+     * @param newProductDTO DTO for creating new product
+     * @throws NoSuchElementException Thrown when producer is not found
+     * @throws IllegalArgumentException Thrown when product value is empty or null
+     * */
     @Transactional
     public void addProduct(NewProductDTO newProductDTO){
         final Producer producer =
@@ -58,6 +72,14 @@ public class ProductService {
         });
     }
 
+    /**
+     * Update partial change for product
+     * @param id Target product id to update
+     * @param jsonPatch json type value which contains attributes to add/replace/remove
+     * @throws NoSuchElementException Thrown when target product is not found or attribute of product is null
+     * @throws JsonPatchException JsonPatchException Thrown when invalid operation, path not found or type invalid
+     * @throws JsonProcessingException Thrown when invalid json data structure or failed to generate json
+     * */
     public void updateProduct(final Long id, final JsonPatch jsonPatch) throws JsonPatchException, JsonProcessingException {
         final Product product = productRepository
                 .findById(id)

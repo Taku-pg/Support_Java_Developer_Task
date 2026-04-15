@@ -6,7 +6,6 @@ import com.example.support_java_devloper_task.Model.DTO.ProducerDTO;
 import com.example.support_java_devloper_task.Model.Entity.Producer;
 import com.example.support_java_devloper_task.Model.Entity.Product;
 import com.example.support_java_devloper_task.Repository.ProducerRepository;
-import com.example.support_java_devloper_task.Repository.ProductRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -24,12 +23,14 @@ public class ProducerService {
         this.productService = productService;
     }
 
+    /**
+     * Retrieve all producers with their products.
+     * If they do not have any product, empty list will be contained
+     * @return List of producer DTO
+     * */
     public List<ProducerDTO> getProducers() {
         List<Producer> producers = producerRepository.findAll();
-        List<Long> ids = producers.stream()
-                .map(Producer::getId)
-                .toList();
-        List<Product> products = productService.getAllProducts(ids);
+        List<Product> products = productService.getAllProducts();
 
         final Map<Long, ProducerDTO> producerMap = new HashMap<>();
 
@@ -40,15 +41,26 @@ public class ProducerService {
             }
 
             final List<Product> producerProducts = products.stream()
-                    .filter(product -> Objects.equals(product.getProducer().getId(), producer.getId()))
+                    .filter(product ->
+                            Objects.equals(
+                                    product.getProducer().getId()
+                                    , producer.getId()
+                            )
+                    )
                     .toList();
 
-            producerMap.get(producer.getId()).setProducerProducts(producerProducts);
+            producerMap.get(producer.getId())
+                    .setProducerProducts(producerProducts);
         }
 
         return new ArrayList<>(producerMap.values());
     }
 
+    /**
+     * Create new producer.
+     * @param newProducerDTO DTO to create new producer.
+     *                       If it does not contain product field, only producer will be saved.
+     * */
     @Transactional
     public void addProducer(NewProducerDTO newProducerDTO) {
         Producer producer = new Producer(newProducerDTO.getProducerName());
@@ -62,6 +74,12 @@ public class ProducerService {
         }
     }
 
+    /**
+     * Update producer name
+     * @param id Target producer id to update
+     * @param newProducerName New producer name
+     * @throws NoSuchElementException Thrown when producer is not found given id
+     * */
     public void updateProducer(Long id, String newProducerName) {
         Producer producer = producerRepository.findById(id)
                 .orElseThrow(()->new NoSuchElementException("producer not found"));

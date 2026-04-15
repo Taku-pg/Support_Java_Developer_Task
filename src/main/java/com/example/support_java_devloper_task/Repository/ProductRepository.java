@@ -5,10 +5,13 @@ import com.example.support_java_devloper_task.Model.Entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import java.util.Collection;
 import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product,Long> {
+
+    /**
+     * Directly mapping Product class to DTO
+     * */
     @Query("""
            SELECT new com.example.support_java_devloper_task.Model.DTO.ProductDTO(
                       product.id,
@@ -17,6 +20,4 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
                       ) FROM Product product JOIN product.producer producer
            """)
     List<ProductDTO> getAllProductDTO();
-
-    List<Product> findAllByIdIn(Collection<Long> ids);
 }

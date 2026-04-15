@@ -39,17 +39,30 @@ public class ProductApiController {
         return ResponseEntity.badRequest().body(e.getMessage());
     }
 
-    @GetMapping("")
+    /**
+     * Retrieve list of all products with their producer name
+     * */
+    @GetMapping()
     public ResponseEntity<List<ProductDTO>> getAllProducts() {
-        return ResponseEntity.ok(productService.getAllProducts());
+        return ResponseEntity.ok(productService.getAllProductDTOs());
     }
 
-    @PostMapping("")
+    /**
+     * Create new products
+     * @param newProductDTO DTO to create new product.
+     *                      It allows to set multiple products at once
+     * */
+    @PostMapping()
     public ResponseEntity<?> createProduct(@RequestBody @Valid NewProductDTO newProductDTO) {
         productService.addProduct(newProductDTO);
         return ResponseEntity.noContent().build();
     }
 
+    /**
+     * Update partial modification
+     * @param id Target product id to modify
+     * @param jsonPatch Json type value which contains attributes to add/replace/remove
+     * */
     @PatchMapping(path = "/{id}", consumes = "application/json-patch+json")
     public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestBody JsonPatch jsonPatch) {
         try{
@@ -60,6 +73,10 @@ public class ProductApiController {
         return ResponseEntity.noContent().build();
     }
 
+    /**
+     * Delete product
+     * @param id Target product id to delete
+     * */
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
