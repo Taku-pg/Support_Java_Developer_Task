@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 public class NewProducerDTO {
-    @NotNull
-    @NotBlank
+    @NotNull(message = "You have to specify producer name")
+    @NotBlank(message = "You have to specify producer name")
     private String producerName;
     private List<Map<String, Object>> products;
 
