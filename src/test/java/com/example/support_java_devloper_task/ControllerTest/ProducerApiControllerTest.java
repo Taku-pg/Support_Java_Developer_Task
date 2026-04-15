@@ -70,7 +70,7 @@ public class ProducerApiControllerTest {
     }
 
     @Test
-    public void postNewProducerTest_Fail_Invalid_Body() throws Exception{
+    public void postNewProducerTest_Fail_Invalid_RequestBody() throws Exception{
         String json = """
                         {
                             "products": [
