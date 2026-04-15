@@ -16,7 +16,15 @@ public class NewProducerDTO {
         return producerName;
     }
 
+    public void setProducerName(String producerName) {
+        this.producerName = producerName;
+    }
+
     public List<Map<String, Object>> getProducts() {
         return products;
+    }
+
+    public void setProducts(List<Map<String, Object>> products) {
+        this.products = products;
     }
 }

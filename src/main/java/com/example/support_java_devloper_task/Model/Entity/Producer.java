@@ -20,6 +20,10 @@ public class Producer {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getProducerName() {
         return producerName;
     }
