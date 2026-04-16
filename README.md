@@ -78,6 +78,7 @@ Base URL: http://localhost:8080/api/v1
     }
 ]
 ```
+<br><br>
 
 2. `Post` /products
 
@@ -106,7 +107,8 @@ Base URL: http://localhost:8080/api/v1
 |---|---|---|
 | producerId | integer | true |
 | products | object[] | true |
-   
+
+<br><br>
 
 3. `Patch` /products/{id}
 
@@ -132,6 +134,8 @@ Base URL: http://localhost:8080/api/v1
     }
 ]
 ```
+
+<br><br>
 
 4. `Delete` /products/{id}
 
@@ -164,6 +168,8 @@ Base URL: http://localhost:8080/api/v1
 ]
 ```
 
+<br><br>
+
 2. `Post` /producers
 
 ##### Description
@@ -189,6 +195,8 @@ Base URL: http://localhost:8080/api/v1
 | producerName | string | true |
 | products | object[] | false |
 
+<br><br>
+
 3. `Put` /producers/{id}
 
 ##### Description
@@ -199,6 +207,8 @@ Base URL: http://localhost:8080/api/v1
 ```
 new company name
 ```
+
+<br><br>
 
 4. `Delete` /producers/id
 
