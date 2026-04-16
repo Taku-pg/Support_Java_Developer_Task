@@ -13,9 +13,9 @@
 >Following commands are based on Windows. Please replace adequate commands as your host OS.
 
 >[!NOTE]
->Using Spring and PostgreSQL port as default (8080 for Spring, 5432 for PostgreSQL).
+>Using Spring and PostgreSQL port as a default port (8080 for Spring, 5432 for PostgreSQL).
 >
->If your local environment setting is different from default port, please modify application.yaml file with proper ports.
+>If your local environment setting is different from the default port, please modify application.yaml file with your proper ports.
  
 #### Database Setup
 1. Create User and Database on local PostgreSQL
@@ -44,15 +44,15 @@
    mvn clean install
    ```
 
-4. Run application
+4. Run the application
 
    ```
    mvn spring-boot:run
    ```
 >[!NOTE]
->Please make sure to free port 8080 and 5432.
+>Please make sure to free ports 8080 and 5432.
 >
->Dummy producer data is already included into project folder.
+>Dummy producer data is already included into the project folder.
 
 ### Endpoints
 
@@ -82,7 +82,7 @@ Base URL: http://localhost:8080/api/v1
 2. `Post` /products
 
 ##### Description
-- Create new product.
+- Create a new product.
 
 ##### Example post request
 ```
@@ -112,9 +112,9 @@ Base URL: http://localhost:8080/api/v1
 
 ##### Description
 - Modify product's attribute data with given product id.
-- You need to specify http header Content-Type as "application/json-patch+json".
-- "op" is represent type of operation such as "add", "replace" or "remove".
-- "path" is target attrbute which you want to add/replace/remove.
+- You need to specify the http header Content-Type as "application/json-patch+json".
+- "op" represents a type of operation such as "add", "replace" or "remove".
+- "path" is a target attrbute which you want to add/replace/remove.
 - "value" needs to specify when "op" is "add" or "replace".
 
 ##### Example patch request
@@ -136,7 +136,7 @@ Base URL: http://localhost:8080/api/v1
 4. `Delete` /products/{id}
 
 ##### Description
-- Delete product with given product id.
+- Delete a product with given product id.
 
 #### Producers
 1. `Get` /producers
@@ -167,7 +167,7 @@ Base URL: http://localhost:8080/api/v1
 2. `Post` /producers
 
 ##### Description
-- Create new producer.
+- Create a new producer.
 - It is possible to add products.
 
 ##### Example post requset
@@ -193,7 +193,7 @@ Base URL: http://localhost:8080/api/v1
 
 ##### Description
 - Change producer's name with given producer id.
-- You specify only string value.
+- You specify only a string value.
 
 ##### Example put request
 ```
@@ -203,5 +203,5 @@ new company name
 4. `Delete` /producers/id
 
 ##### Description
-- Delete producer with given producer id.
+- Delete a producer with given producer id.
 - This producer's products are also deleted.
